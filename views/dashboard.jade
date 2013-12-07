@@ -1,0 +1,30 @@
+doctype 5
+html(ng-app="viser")
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='http://twitter.github.com/bootstrap/assets/css/bootstrap.css')
+    script(type="text/javascript", src="http://code.jquery.com/jquery-1.8.0.min.js")
+    script(type="text/javascript", src="http://d3js.org/d3.v2.min.js")
+    script(type="text/javascript", src="http://getbootstrap.com/2.3.2/assets/js/bootstrap.min.js")
+    script(type="text/javascript", src="https://www.google.com/jsapi")
+    script(type="text/javascript").
+      google.load('visualization', '1.0', {'packages': ['corechart', 'table']})
+    script(type="text/javascript", src="/javascripts/lib/dviz.js")
+    script(type="text/javascript", src="/javascripts/lib/opt_graph.js")
+    script(type="text/javascript").
+      $(function() {dviz.run();});
+iz    script(type="text/javascript", src="http://code.angularjs.org/1.0.1/angular-1.0.1.js")
+    script(type="text/javascript", src="/javascripts/dashboardCtrl.js")  
+  body
+    div(class="dviz-content",style="max-width: 100%px; max-height: 100%px;",ng-controller="DashboardCtrl")
+      
+      pre
+        code.
+          Dodaj komentarz -(6)- Moderacja
+          Moderacja -(6)- Front
+          Moderacja -(6)- SPAM
+      
+      div
+        code.
+          (@graph)
