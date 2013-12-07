@@ -9,6 +9,7 @@
     "express": "3.4.4",
     "coffee-middleware": "*",
     "jade": "*",
-    "stylus": "*"
+    "stylus": "*",
+    "vows": "~0.7.0"
   }
 }

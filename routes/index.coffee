@@ -1,2 +1,2 @@
-exports.index = (req, res) ->
+exports.show = (req, res) ->
   res.render 'index', {}

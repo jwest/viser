@@ -3,7 +3,7 @@
     dviz.opt['graph'] = function($e, data, options) {
         var data = parse_graph(data);
         var width = $e.parent().width();
-        var height = width * 0.6;
+        var height = width * 0.5;
         var color_scheme = dviz.get_nominal_colors(data.group_length);
         var color = function(n) {
             return color_scheme[n];
@@ -11,7 +11,7 @@
         // @TODO: remove magic numbers
         var force = d3.layout.force()
             .charge(-10000)
-            .linkDistance(150)
+            .linkDistance(100)
             .size([width, height]);
 
         var e = $e[0];
