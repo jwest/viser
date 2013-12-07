@@ -1,6 +1,7 @@
 express = require 'express'
 routes = require './routes'
 dashboard = require './routes/dashboard'
+api = require './routes/api'
 http = require 'http'
 path = require 'path'
 coffeeMiddleware = require 'coffee-middleware'
@@ -29,6 +30,7 @@ if 'development' == app.get('env')
 
 app.get '/', routes.index
 app.get '/dashboard', dashboard.show
+app.post '/api/v1/event', api.event
 
 http.createServer(app).listen app.get('port'), ->
   console.log 'Express server listening on port ' + app.get 'port'
