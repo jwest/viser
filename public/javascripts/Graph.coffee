@@ -1,10 +1,5 @@
-app = angular.module 'viser', []
+class Graph
 
-class DashboardCtrl
-
-  @$inject: ['$scope'] 
-  constructor: (@scope) ->
-    
   searchElem: (elemText) ->
     $('title:contains('+elemText+')').parent()
 
@@ -73,9 +68,4 @@ class DashboardCtrl
       when getProposition4 cord then getProposition4 cord
       else null
 
-app.controller 'DashboardCtrl', DashboardCtrl
-window.d = new DashboardCtrl()
-
-socket = window.io.connect('http://localhost:3000');
-socket.on 'flow', (source, target) ->
-  window.d.focus source, target
+app.factory "Graph", -> new Graph()
