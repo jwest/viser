@@ -16,16 +16,22 @@ class DashboardCtrl
 
   extendedFocus = (source, line, target) ->    
     changeColor source, "#ff0"
+    
     lineEvent = () ->
       changeColor source, "#555"
       changeColor line, "#ff0"
+      
       targetEvent = () ->
         changeColor line, "#555"
         changeColor target, "#ff0"
+        
         endEvent = () ->
           changeColor target, "#555"
+
         setTimeout endEvent, 100
+    
       setTimeout targetEvent, 100
+    
     setTimeout lineEvent, 100
 
   changeColor = (elem, color) ->

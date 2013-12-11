@@ -35,9 +35,6 @@ app.post '/api/v1/event', routes.api.post
 
 server = http.createServer app
 
-# http.createServer(app).listen app.get('port'), ->
-#   console.log 'Express server listening on port ' + app.get 'port'
-
 io = require('socket.io').listen server
 
 io.sockets.on 'connection', (socket) ->
