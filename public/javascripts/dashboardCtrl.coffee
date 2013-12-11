@@ -69,3 +69,7 @@ class DashboardCtrl
 
 app.controller 'DashboardCtrl', DashboardCtrl
 window.d = new DashboardCtrl()
+
+socket = window.io.connect('http://localhost:3000');
+socket.on 'flow', (source, target) ->
+  window.d.focus source, target

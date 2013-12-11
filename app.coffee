@@ -9,8 +9,8 @@ coffeeMiddleware = require 'coffee-middleware'
 
 app = express()
 
-# all environments
-app.set 'port', process.env.PORT || 3000
+# all environments process.env.PORT || 
+app.set 'port', 3000
 app.set 'views', path.join __dirname, 'views'
 app.set 'view engine', 'jade'
 app.use coffeeMiddleware
@@ -31,7 +31,17 @@ if 'development' == app.get('env')
 
 app.get '/', routes.index.show
 app.get '/dashboard', routes.dashboard.show
-app.post '/api/v1/event', routes.api.event
+app.post '/api/v1/event', routes.api.post
 
-http.createServer(app).listen app.get('port'), ->
-  console.log 'Express server listening on port ' + app.get 'port'
+server = http.createServer app
+
+# http.createServer(app).listen app.get('port'), ->
+#   console.log 'Express server listening on port ' + app.get 'port'
+
+io = require('socket.io').listen server
+
+io.sockets.on 'connection', (socket) ->
+  routes.api.on "flow", (source, target) ->
+  	socket.emit "flow", source, target
+
+server.listen 3000

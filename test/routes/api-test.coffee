@@ -2,7 +2,7 @@ vows = require 'vows'
 assert = require '../assert'
 
 api = require '../../routes/api'
-
+console.log api
 vows
   .describe('Api action')
   .addBatch
@@ -10,16 +10,26 @@ vows
         topic: api
 
         'is valid': 
-            'should get success': (api) ->
+            'should get success and emit event': (api) ->
+                eventExecuted = false
+                eventAssert = (source, target) ->
+                    assert.equal source, "1"
+                    assert.equal target, "2"
+                    eventExecuted = true
+
                 request = 
                     body: 
                         source: "1"
                         target: "2"
 
-                api.event request, 
+                api.on "flow", eventAssert
+
+                api.post request, 
                     assert.responseSend 200, 
                         status: 
                             'success'
+
+                assert eventExecuted
 
         'is invalid': 
             'becouse field SOURCE not exist': 
@@ -28,7 +38,10 @@ vows
                         body: 
                             target: "2"
 
-                    api.event request, 
+                    api.on "flow", ->
+                        assert false
+
+                    api.post request, 
                         assert.responseSend 400, 
                             status: 
                                 'source field not defined'
@@ -39,8 +52,12 @@ vows
                         body: 
                             source: "1"
 
-                    api.event request, 
+                    api.on "flow", ->
+                        assert false
+
+                    api.post request, 
                         assert.responseSend 400, 
                             status: 
                                 'target field not defined'
+
   .export module

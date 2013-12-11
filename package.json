@@ -10,6 +10,8 @@
     "coffee-middleware": "*",
     "jade": "*",
     "stylus": "*",
-    "vows": "~0.7.0"
+    "vows": "~0.7.0",
+    "socket.io": "~0.9.16",
+    "axon": "~1.0.0"
   }
 }
