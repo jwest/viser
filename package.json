@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "./node_modules/.bin/coffee app.coffee",
-    "test": "./node_modules/.bin/vows test/routes/* --spec"
+    "test": "./node_modules/.bin/vows test/routes/* --spec && ./node_modules/.bin/karma start public/javascripts/test/karma.config.js --single-run"
   },
   "dependencies": {
     "express": "3.4.4",
