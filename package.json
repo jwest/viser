@@ -1,10 +1,10 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
+  "name": "viser",
+  "version": "0.1.0",
   "scripts": {
     "start": "./node_modules/.bin/coffee app.coffee",
-    "test": "./node_modules/.bin/vows test/routes/* --spec && ./node_modules/.bin/karma start public/javascripts/test/karma.config.js --single-run"
+    "test": "./node_modules/.bin/vows test/routes/* --spec && ./node_modules/.bin/karma start public/javascripts/test/karma.config.js --single-run",
+    "postinstall": "./node_modules/.bin/bower install"
   },
   "dependencies": {
     "express": "3.4.4",
@@ -14,7 +14,8 @@
     "stylus": "*",
     "vows": "~0.7.0",
     "socket.io": "~0.9.16",
-    "axon": "~1.0.0"
+    "axon": "~1.0.0",
+    "bower": "*"
   },
   "devDependencies": {
     "karma-script-launcher": "~0.1.0",

@@ -1,0 +1,23 @@
+{
+  "name": "viser",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jwest/viser",
+  "authors": [
+    "Jakub Westfalewski <jwest@jwest.pl>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.4",
+    "jquery": "~1.10.2",
+    "angular-resource": "~1.2.4",
+    "d3": "~2.10.3",
+    "bootstrap": "~3.0.3"
+  }
+}

@@ -2,21 +2,25 @@ doctype 5
 html(ng-app="viser")
   head
     title= title
+
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='http://twitter.github.com/bootstrap/assets/css/bootstrap.css')
-    script(type="text/javascript", src="/javascripts/lib/jquery.min.js")
-    script(type="text/javascript", src="http://d3js.org/d3.v2.min.js")
-    script(type="text/javascript", src="http://getbootstrap.com/2.3.2/assets/js/bootstrap.min.js")
+
+    script(type="text/javascript", src="/javascripts/lib/jquery/jquery.js")
+    script(type="text/javascript", src="/javascripts/lib/d3/d3.v2.js")
+    script(type="text/javascript", src="/javascripts/lib/bootstrap/dist/js/bootstrap.js")
+    script(type="text/javascript", src="/socket.io/socket.io.js")
+    
     script(type="text/javascript", src="https://www.google.com/jsapi")
     script(type="text/javascript").
       google.load('visualization', '1.0', {'packages': ['corechart', 'table']})
+    
     script(type="text/javascript", src="/javascripts/lib/dviz.js")
     script(type="text/javascript", src="/javascripts/lib/opt_graph.js")
     script(type="text/javascript").
       $(function() {dviz.run();});
-    script(type="text/javascript", src="/javascripts/lib/angular.js")
-    script(type="text/javascript", src="/javascripts/lib/angular-resource.js")
-    script(type="text/javascript", src="/socket.io/socket.io.js")
+    script(type="text/javascript", src="/javascripts/lib/angular/angular.js")
+    script(type="text/javascript", src="/javascripts/lib/angular-resource/angular-resource.js")
+    
     script(type="text/javascript", src="/javascripts/DashboardCtrl.js")
     script(type="text/javascript", src="/javascripts/Graph.js")  
 
