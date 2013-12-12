@@ -2,15 +2,15 @@ module.exports = function(config){
     
 config.set({
     
-    basePath : '../',
+    basePath : '.',
 
     files : [
-      './lib/jquery.min.js',
-      './lib/dviz.js',
-      './lib/opt_graph.js',
-      './lib/angular.js',
-      './lib/angular-mocks.js',
-      './lib/angular-resource.js',
+      './public/javascripts/lib/jquery/jquery.min.js',
+      './public/javascripts/lib/dviz.js',
+      './public/javascripts/lib/opt_graph.js',
+      './public/javascripts/lib/angular/angular.js',
+      './public/javascripts/lib/angular-mocks/angular-mocks.js',
+      './public/javascripts/lib/angular-resource/angular-resource.js',
       './**/*.coffee',
       './**/*.js'
     ],
