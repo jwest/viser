@@ -14,7 +14,9 @@ class Api extends EventEmitter
         status: "target field not defined"
       return
 
-    @emit "flow", req.body.source, req.body.target
+    id = if req.body.id? then req.body.id else null
+    
+    @emit "flow", req.body.source, req.body.target, id
 
     res.send 200,
       status: "success"
