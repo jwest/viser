@@ -7,6 +7,7 @@ module.exports = (config) ->
     files: [
       #'public/javascripts/lib/*/*.min.js'
       #'public/javascripts/lib/*.js'
+      'public/javascripts/lib/jquery/jquery.min.js'
       'public/javascripts/lib/angular/angular.min.js'
       'public/javascripts/lib/angular-route/angular-route.min.js'
       'public/javascripts/lib/angular-mocks/angular-mocks.js'

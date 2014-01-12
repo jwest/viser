@@ -1,4 +1,4 @@
-window.app = angular.module 'viser', ['ngResource']
+app = angular.module 'viser', ['ngResource']
  
 app.controller 'DashboardCtrl', ($scope, @Graph) ->
 

@@ -1,6 +1,6 @@
-describe 'DashboardCtrl', ->
+# describe 'DashboardCtrl', ->
     
-    #beforeEach(angular.mock.module('viser'));
+#     #beforeEach(angular.mock.module('viser'));
 
-    it 'should have a VideosCtrl controller', ->
-        expect(true).to.equal(false);
+#     it 'should have a VideosCtrl controller', ->
+#         expect(true).to.equal(false);

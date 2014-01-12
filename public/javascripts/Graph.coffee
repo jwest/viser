@@ -68,4 +68,4 @@ class Graph
       when getProposition4 cord then getProposition4 cord
       else null
 
-app.factory "Graph", -> new Graph()
+app.service "Graph", -> new Graph()
