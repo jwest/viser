@@ -7,21 +7,23 @@ class Graph
     searchLineWithCord prepareCord @searchElem(source), @searchElem(target);
 
   focus: (source, target) ->
-    extendedFocus @searchElem(source)[0], @searchLine(source, target)[0], @searchElem(target)[0]
+    if @searchLine(source, target) is null
+       return false
+    extendedFocus @searchElem(source), @searchLine(source, target), @searchElem(target)
 
   extendedFocus = (source, line, target) ->    
-    changeColor source, "#ff0"
+    flash source
     
     lineEvent = () ->
-      changeColor source, "#555"
-      changeColor line, "#ff0"
+      removeFlash source
+      flash line
       
       targetEvent = () ->
-        changeColor line, "#555"
-        changeColor target, "#ff0"
+        removeFlash line
+        flash target
         
         endEvent = () ->
-          changeColor target, "#555"
+          removeFlash target
 
         setTimeout endEvent, 100
     
@@ -29,9 +31,18 @@ class Graph
     
     setTimeout lineEvent, 100
 
+  flash = (elem) ->
+    elem.attr 'flashed', 'flashed'
+    changeColor elem, "#ff0"
+
+  removeFlash = (elem) ->
+    elem.removeAttr 'flashed'
+    changeColor elem, "#555"
+
   changeColor = (elem, color) ->
-    elem.style.stroke = color
-    elem.style.fill = color
+    elem.css 
+        'stroke': color
+        'fill': color
 
   getLine = (x1, x2, y1, y2) ->
     $('line[x1="'+x1+'"][x2="'+x2+'"][y1="'+y1+'"][y2="'+y2+'"]')
