@@ -1,6 +1,8 @@
 Viser - vizualization services tool
 -----------------------------------
 
+[![Build Status](https://travis-ci.org/jwest/viser.png?branch=master)](https://travis-ci.org/jwest/viser)
+
 Use viser for realtime monitoring event flow in your process.
 
 **Build**
