@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "start": "./node_modules/.bin/coffee app.coffee",
-    "test": "./node_modules/.bin/vows test/routes/* --spec && ./node_modules/.bin/karma start karma.config.js --single-run",
+    "test": "./node_modules/.bin/vows test/routes/* --spec && ./node_modules/.bin/karma start karma.conf.coffee --single-run",
     "postinstall": "./node_modules/.bin/bower install"
   },
   "dependencies": {
