@@ -6,39 +6,65 @@ console.log api
 vows
   .describe('Api action')
   .addBatch
-    'when sended event via Api':
+    'when sent event via Api':
         topic: api
 
-        'is valid': 
-            'should get success and emit event': (api) ->
-                eventExecuted = false
-                eventAssert = (source, target) ->
-                    assert.equal source, "1"
-                    assert.equal target, "2"
-                    eventExecuted = true
+        'is valid':
+            'and all fields are set':
+                'should get success and emit event': (api) ->
+                    eventExecuted = false
+                    eventAssert = (source, target, id) ->
+                        assert.equal source, "1"
+                        assert.equal target, "2"
+                        assert.equal id, "3"
+                        eventExecuted = true
+    
+                    request = 
+                        body: 
+                            source: "1"
+                            target: "2"
+                            id: "3"
+    
+                    api.once "flow", eventAssert
+    
+                    api.post request, 
+                        assert.responseSend 200, 
+                            status: 
+                                'success'
+    
+                    assert eventExecuted
 
-                request = 
-                    body: 
-                        source: "1"
-                        target: "2"
-
-                api.on "flow", eventAssert
-
-                api.post request, 
-                    assert.responseSend 200, 
-                        status: 
-                            'success'
-
-                assert eventExecuted
+            'and all fields but id are set':
+                'should get success and emit event': (api) ->
+                    eventExecuted = false
+                    eventAssert = (source, target, id) ->
+                        assert.equal source, "1"
+                        assert.equal target, "2"
+                        assert.isNull id
+                        eventExecuted = true
+    
+                    request = 
+                        body: 
+                            source: "1"
+                            target: "2"
+    
+                    api.once "flow", eventAssert
+    
+                    api.post request, 
+                        assert.responseSend 200, 
+                            status: 
+                                'success'
+    
+                    assert eventExecuted
 
         'is invalid': 
-            'becouse field SOURCE not exist': 
+            'because field SOURCE does not exist': 
                 'should return bad request': (api) ->
                     request = 
                         body: 
                             target: "2"
 
-                    api.on "flow", ->
+                    api.once "flow", ->
                         assert false
 
                     api.post request, 
@@ -46,13 +72,13 @@ vows
                             status: 
                                 'source field not defined'
 
-            'becouse field TARGET not exist': 
+            'because field TARGET does not exist': 
                 'should return bad request': (api) ->
                     request = 
                         body: 
                             source: "1"
 
-                    api.on "flow", ->
+                    api.once "flow", ->
                         assert false
 
                     api.post request, 

@@ -19,6 +19,7 @@ app.use coffeeMiddleware
 app.use express.favicon()
 app.use express.logger 'dev'
 app.use express.json()
+app.use express.bodyParser()
 app.use express.urlencoded()
 app.use express.methodOverride()
 app.use app.router
@@ -38,7 +39,7 @@ server = http.createServer app
 io = require('socket.io').listen server
 
 io.sockets.on 'connection', (socket) ->
-  routes.api.on "flow", (source, target) ->
+  routes.api.on "flow", (source, target, id) ->
   	socket.emit "flow", source, target
 
 server.listen 3000
