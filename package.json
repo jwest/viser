@@ -18,7 +18,8 @@
     "stylus": "~0.42.0",
     "socket.io": "~0.9.16",
     "axon": "~1.0.0",
-    "bower": "~1.2.8"
+    "bower": "~1.2.8",
+    "tingodb": "~0.2.1"
   },
   "devDependencies": {
     "karma-script-launcher": "~0.1.0",
