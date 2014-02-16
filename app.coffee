@@ -1,15 +1,17 @@
-express = require 'express'
 routes =
 	index: require './routes/index'
 	dashboard: require './routes/dashboard'
 	api: require './routes/api'
+	stats: require './routes/stats'
+	statsSimpleStatByRange: require './routes/stats/simple-stat-by-range'
+
+express = require 'express'
 http = require 'http'
 path = require 'path'
 coffeeMiddleware = require 'coffee-middleware'
 
 app = express()
 
-# all environments process.env.PORT || 
 app.set 'port', 3000
 app.set 'views', path.join __dirname, 'views'
 app.set 'view engine', 'jade'
@@ -26,12 +28,14 @@ app.use require('stylus').middleware path.join __dirname, 'public'
 app.use express.static path.join __dirname, 'public'
 
 # development only
-if 'development' == app.get('env')
+# if 'development' == app.get('env')
   app.use express.errorHandler()
 
 app.get '/', routes.index.show
 app.get '/dashboard', routes.dashboard.show
 app.post '/api/v1/event', routes.api.post
+app.get '/stats', routes.stats.show
+app.get '/stats/simple-stat-by-range', routes.statsSimpleStatByRange.show
 
 server = http.createServer app
 
