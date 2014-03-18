@@ -1,0 +1,27 @@
+{
+    "name": "ViserApiClient",
+    "type": "library",
+    "description": "Viser API clients for PHP",
+    "require": {
+        "guzzle/guzzle": "v3.8.1"
+    },
+    "require-dev": {
+        "phing/phing":               "2.5.0",
+        "phpunit/phpunit":           "3.7.*"
+    },
+    "authors": [
+        {
+            "name": "Rafał Połomka",
+            "email": "polomek@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "Viser\\Api\\REST": "./src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
