@@ -43,9 +43,9 @@ class DashboardClientTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->client = $this->getMock('\Guzzle\Http\ClientInterface');
-        $this->dashboard = new DashboardClient($this->client);
-        $this->dashboard->setPath('/path');
-        $this->dashboard->setVersion('version');
+        $this->dashboard = new DashboardClient(
+            $this->client, '/path', 'version'
+        );
     }
 
     /**

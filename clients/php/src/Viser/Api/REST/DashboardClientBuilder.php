@@ -67,12 +67,8 @@ class DashboardClientBuilder
     public function build()
     {
         $client = new Client($this->baseUrl);
-
-        $dashboardClient = new DashboardClient($client);
-        $dashboardClient
-            ->setPath($this->path)
-            ->setVersion($this->apiVersion);
-
-        return $dashboardClient;
+        return new DashboardClient(
+            $client, $this->path, $this->apiVersion
+        );
     }
 }

@@ -27,47 +27,11 @@ class DashboardClient
     /**
      * @param ClientInterface $client
      */
-    public function __construct(ClientInterface $client)
+    public function __construct(ClientInterface $client, $path, $version)
     {
         $this->client = $client;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVersion()
-    {
-        return $this->version;
-    }
-
-    /**
-     * @param string $version
-     *
-     * @return DashboardClient
-     */
-    public function setVersion($version)
-    {
-        $this->version = $version;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPath()
-    {
-        return $this->path;
-    }
-
-    /**
-     * @param string $path
-     *
-     * @return DashboardClient
-     */
-    public function setPath($path)
-    {
         $this->path = $path;
-        return $this;
+        $this->version = $version;
     }
 
     /**
