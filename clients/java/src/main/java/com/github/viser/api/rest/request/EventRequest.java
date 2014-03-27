@@ -5,12 +5,8 @@ package com.github.viser.api.rest.request;
  */
 public class EventRequest
 {
-    private String source;
-    private String target;
-
-    public EventRequest()
-    {
-    }
+    private final String source;
+    private final String target;
 
     public EventRequest(String source, String target)
     {
@@ -23,18 +19,8 @@ public class EventRequest
         return source;
     }
 
-    public void setSource(String source)
-    {
-        this.source = source;
-    }
-
     public String getTarget()
     {
         return target;
-    }
-
-    public void setTarget(String target)
-    {
-        this.target = target;
     }
 }
