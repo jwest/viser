@@ -18,8 +18,8 @@ class Repository
 		collection.count filters, (err, result) ->
 			cb err, result
 
-	countByRange: (start, end, cb) ->
-		collection.count { datetime: {"$gte": start, "$lt": end} }, (err, result) ->
+	countByRange: (obj, cb) ->
+		collection.count { datetime: {"$gte": obj.start, "$lt": obj.end} }, (err, result) ->
 			cb err, result
 
 	clean: (cb) ->

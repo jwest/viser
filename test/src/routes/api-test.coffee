@@ -8,9 +8,10 @@ module.exports =
             'is valid': 
                 'should get success and emit event': (done) ->
 
-                    request = { body: { source: "1", target: "2" } }
+                    request = { body: { id: 1, source: "1", target: "2" } }
 
-                    api.on "flow", (source, target) ->
+                    api.on "flow", (source, target, id) ->
+                        assert.equal id, 1
                         assert.equal source, "1"
                         assert.equal target, "2"
                         done()
@@ -20,7 +21,6 @@ module.exports =
                             status: 
                                 'success'
 
-                
             'is invalid':
                 'becouse field SOURCE not exist': ->
 

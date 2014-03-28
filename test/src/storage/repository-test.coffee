@@ -67,7 +67,7 @@ module.exports =
                         end = new Date().getTime()
                         
                         repository.save 'source-1', 'target-2', 1, (err, result) =>
-                            repository.countByRange start, end, (err, result) =>
+                            repository.countByRange { start: start, end: end }, (err, result) =>
                                 assert.equal result, 1         
                                 done()
 
@@ -83,7 +83,7 @@ module.exports =
                         
                             end = new Date().getTime()
 
-                            repository.countByRange start, end, (err, result) =>
+                            repository.countByRange { start: start, end: end }, (err, result) =>
                                 assert.equal result, 1         
                                 done()
 

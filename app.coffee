@@ -9,6 +9,7 @@ express = require 'express'
 http = require 'http'
 path = require 'path'
 coffeeMiddleware = require 'coffee-middleware'
+repository = require './storage/repository'
 
 app = express()
 
@@ -28,7 +29,7 @@ app.use require('stylus').middleware path.join __dirname, 'public'
 app.use express.static path.join __dirname, 'public'
 
 # development only
-# if 'development' == app.get('env')
+if 'development' == app.get('env')
   app.use express.errorHandler()
 
 app.get '/', routes.index.show
@@ -42,7 +43,8 @@ server = http.createServer app
 io = require('socket.io').listen server
 
 io.sockets.on 'connection', (socket) ->
-  routes.api.on "flow", (source, target) ->
-  	socket.emit "flow", source, target
+  routes.api.on "flow", (source, target, id) ->
+    repository.save source, target, id, () ->
+  	  socket.emit "flow", source, target
 
 server.listen 3000
