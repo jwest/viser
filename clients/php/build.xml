@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ViserApiClient" default="test">
+    <target name="test" description="Run tests">
+        <phingcall target="run.syntax"/>
+        <phingcall target="run.tests"/>
+    </target>
+    <target name="run.tests" description="Run phpunit">
+        <exec
+                command="bin/phpunit --configuration phpunit.xml --strict --verbose"
+                passthru="true"
+                checkreturn="false"/>
+    </target>
+    <target name="run.syntax" description="Run syntax check">
+        <phplint>
+            <fileset dir="${project.basedir}">
+                <include name="**/*.php"/>
+                <exclude name="vendor/**/*.php"/>
+            </fileset>
+        </phplint>
+    </target>
+</project>
