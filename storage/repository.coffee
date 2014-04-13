@@ -11,6 +11,7 @@ class Repository
 			id: id
 			datetime: new Date().getTime()
 
+		console.log obj
 		collection.insert [ obj ], { w : 1 }, (err, result) ->
 		  	cb (err is null)
 

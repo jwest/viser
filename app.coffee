@@ -43,6 +43,7 @@ server = http.createServer app
 io = require('socket.io').listen server
 
 io.sockets.on 'connection', (socket) ->
+  console.log source
   routes.api.on "flow", (source, target, id) ->
     repository.save source, target, id, () ->
   	  socket.emit "flow", source, target

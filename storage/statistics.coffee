@@ -7,7 +7,6 @@ class Statistics
 	@repository = repository
 
 	getByRange: (unit, start, end, cb) ->
-
 		range = moment().range start, end
 		elements = []
 
