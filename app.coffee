@@ -10,6 +10,8 @@ http = require 'http'
 path = require 'path'
 coffeeMiddleware = require 'coffee-middleware'
 
+repository = require './storage/repository'
+
 app = express()
 
 app.set 'port', 3000
@@ -29,7 +31,7 @@ app.use express.static path.join __dirname, 'public'
 
 # development only
 # if 'development' == app.get('env')
-  app.use express.errorHandler()
+app.use express.errorHandler()
 
 app.get '/', routes.index.show
 app.get '/dashboard', routes.dashboard.show
@@ -42,7 +44,9 @@ server = http.createServer app
 io = require('socket.io').listen server
 
 io.sockets.on 'connection', (socket) ->
-  routes.api.on "flow", (source, target) ->
-  	socket.emit "flow", source, target
+  routes.api.on "flow", (source, target, id) ->
+    socket.emit "flow", source, target, id
+    repository.save source, target, id, ->
+
 
 server.listen 3000

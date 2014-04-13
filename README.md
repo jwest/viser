@@ -30,6 +30,7 @@ Content-Type: application/json
 ... and content:
 ```json
 {
+  "id": "f4j139342f34f123e2c12c",  //custom data object id, for identity event
   "source": "Moderacja",
   "target": "Front"
 }
