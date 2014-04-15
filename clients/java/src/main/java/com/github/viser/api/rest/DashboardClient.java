@@ -23,7 +23,7 @@ public class DashboardClient
     }
 
     /**
-     * Triggers an event in Viser dashboard.
+     * Triggers an event with default empty ID in Viser dashboard.
      *
      * @param source start of an event
      * @param target end of an event
@@ -33,10 +33,25 @@ public class DashboardClient
      */
     public void event(String source, String target)
     {
+        event("", source, target);
+    }
+
+    /**
+     * Triggers an event in Viser dashboard.
+     *
+     * @param id     client ID
+     * @param source start of an event
+     * @param target end of an event
+     *
+     * @throws com.github.viser.api.rest.exception.ResponseException
+     * @throws com.github.viser.api.rest.exception.UnknownErrorException
+     */
+    public void event(String id, String source, String target)
+    {
         try {
             webTarget
                     .request(MediaType.APPLICATION_JSON_TYPE)
-                    .post(createEventRequestEntity(source, target), EventResponse.class);
+                    .post(createEventRequestEntity(id, source, target), EventResponse.class);
         } catch (BadRequestException e) {
             throw new ResponseException();
         } catch (Exception e) {
@@ -44,8 +59,8 @@ public class DashboardClient
         }
     }
 
-    public Entity<EventRequest> createEventRequestEntity(String source, String target)
+    public Entity<EventRequest> createEventRequestEntity(String id, String source, String target)
     {
-        return Entity.json(new EventRequest(source, target));
+        return Entity.json(new EventRequest(id, source, target));
     }
 }
