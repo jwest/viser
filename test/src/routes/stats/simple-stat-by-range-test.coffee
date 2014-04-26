@@ -12,7 +12,6 @@ module.exports =
                     repository.save 'source-1', 'target-1', 1, (err, result) =>
                         repository.save 'source-1', 'target-2', 1, (err, result) =>
                             repository.count {}, (err, result) =>
-                                console.log result
                                 request = { body: '' }
 
                                 stats.show request,

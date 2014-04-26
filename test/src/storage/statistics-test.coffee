@@ -1,11 +1,14 @@
 statistics = require '../../../storage/statistics'
 assert = require 'assert'
 moment = require 'moment'
-statistics.repository = require '../../repository-mock.coffee'
 
 module.exports =
 
     'Statistics': # @see for repository mock (endDate - startDate)
+
+        before: (done) ->
+          statistics.repository = require '../../repository-mock.coffee'
+          done()
 
         'when get stats from repository by day':
 

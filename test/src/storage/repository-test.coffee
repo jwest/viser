@@ -1,6 +1,7 @@
 repository = require '../../../storage/repository'
 assert = require 'assert'
 sleep = require 'sleep'
+moment = require 'moment'
 
 module.exports =
 
@@ -8,8 +9,7 @@ module.exports =
         'when add item to repository':
 
             'should get one item after save one': (done) ->
-
-                repository.clean =>                
+                repository.clean =>
                     repository.save 'source-1', 'target-1', 1, (err, result) =>
                         repository.count {}, (err, result) =>
                             assert.equal result, 1
@@ -58,13 +58,13 @@ module.exports =
 
             'should return one item in date range': (done) ->
 
-                start = new Date().getTime()
+                start = moment().valueOf()
 
                 repository.clean () =>                
                     repository.save 'source-1', 'target-1', 1, (err, result) =>
                         
                         sleep.usleep 100000
-                        end = new Date().getTime()
+                        end = moment().valueOf()
                         
                         repository.save 'source-1', 'target-2', 1, (err, result) =>
                             repository.countByRange { start: start, end: end }, (err, result) =>
@@ -77,11 +77,11 @@ module.exports =
                     repository.save 'source-1', 'target-1', 1, (err, result) =>
 
                         sleep.usleep 300000
-                        start = new Date().getTime()
+                        start = moment().valueOf()
 
                         repository.save 'source-1', 'target-2', 1, (err, result) =>
                         
-                            end = new Date().getTime()
+                            end = moment().valueOf()
 
                             repository.countByRange { start: start, end: end }, (err, result) =>
                                 assert.equal result, 1         
