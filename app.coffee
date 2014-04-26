@@ -11,6 +11,8 @@ path = require 'path'
 coffeeMiddleware = require 'coffee-middleware'
 repository = require './storage/repository'
 
+repository = require './storage/repository'
+
 app = express()
 
 app.set 'port', 3000
@@ -29,8 +31,8 @@ app.use require('stylus').middleware path.join __dirname, 'public'
 app.use express.static path.join __dirname, 'public'
 
 # development only
-if 'development' == app.get('env')
-  app.use express.errorHandler()
+# if 'development' == app.get('env')
+app.use express.errorHandler()
 
 app.get '/', routes.index.show
 app.get '/dashboard', routes.dashboard.show
@@ -43,7 +45,6 @@ server = http.createServer app
 io = require('socket.io').listen server
 
 io.sockets.on 'connection', (socket) ->
-  console.log source
   routes.api.on "flow", (source, target, id) ->
     repository.save source, target, id, () ->
   	  socket.emit "flow", source, target

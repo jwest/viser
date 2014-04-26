@@ -13,7 +13,8 @@ class Repository
 
 		console.log obj
 		collection.insert [ obj ], { w : 1 }, (err, result) ->
-		  	cb (err is null)
+			console.log result
+			cb (err is null)
 
 	count: (filters, cb) ->
 		collection.count filters, (err, result) ->
