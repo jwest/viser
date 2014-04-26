@@ -3,6 +3,13 @@ extends layout
 block content
   h1 Viser - visualize event in your app
   p Statistics
-  div
-    a(href="/stats/simple-stat-by-range").
-      Show simple stats by date range
+  ul
+    li
+      a(href="/stats/simple-stat-by-range?unit=minute").
+        Show stats by date range - unit: minute
+    li
+      a(href="/stats/simple-stat-by-range?unit=hour").
+        Show stats by date range - unit: hour
+    li
+      a(href="/stats/simple-stat-by-range?unit=day").
+        Show stats by date range - unit: day

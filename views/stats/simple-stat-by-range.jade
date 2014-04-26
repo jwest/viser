@@ -3,8 +3,17 @@ extends ../layout
 block content
   h1.
     Viser - visualize event in your app
-  p.
-    Statistics - Stats by date range
+  h3.
+    Statistics - Stats by date range (#{unit})
+  form(method="GET")
+    select(name="unit")
+      option(value="minute" selected='minute'==unit) minute
+      option(value="hour" selected='hour'==unit) hour
+      option(value="day" selected='day'==unit) day
+    input(name="count" type="number" value="#{count}")
+    input(type="submit")
+
+  br
   div
     canvas(id="statsByDateRange" width="1024" height="400")
 
