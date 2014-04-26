@@ -18,6 +18,10 @@ class Repository
   count: (filters, cb) ->
     collection.count filters, (err, result) ->
       cb err, result
+#
+#  find: (cb) ->
+#    collection.find().toArray (err, result) ->
+#      cb err, result
 
   countByRange: (obj, cb) ->
     collection.count { datetime: {"$gte": obj.start, "$lt": obj.end} }, (err, result) ->

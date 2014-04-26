@@ -8,7 +8,7 @@ module.exports.responseSend = (expectedCode, expectedMessage) ->
         assert.deepEqual actualMessage, expectedMessage
 
 module.exports.responseRender = (expectedTemplate, expectedData, cb) ->
-    render: (actualTemplate, actualData) -> 
+    render: (actualTemplate, actualData) ->
         assert.equal actualTemplate, expectedTemplate
         assert.deepEqual actualData, expectedData
-        if cb? then cb()
+        cb?()

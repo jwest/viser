@@ -13,7 +13,7 @@ class Statistics
 
     range.by unit + 's', (moment) ->
       elements.push
-        start: moment.valueOf()
+        start: moment.startOf(unit).valueOf()
         end: moment.endOf(unit).valueOf()
 
     fu = (item, cb) =>
