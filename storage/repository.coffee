@@ -1,5 +1,5 @@
 Engine = require('tingodb')()
-db = new Engine.Db '/tmp', {}
+db = new Engine.Db '.', {}
 collection = db.collection 'events'
 moment = require 'moment'
 
