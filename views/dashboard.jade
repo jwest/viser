@@ -3,7 +3,7 @@ html(ng-app="viser")
   head
     title= ViserDashboard
 
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/dashboard.css')
 
     script(type="text/javascript", src="/javascripts/lib/jquery/jquery.js")
     script(type="text/javascript", src="/javascripts/lib/d3/d3.v2.js")
@@ -22,9 +22,14 @@ html(ng-app="viser")
     script(type="text/javascript", src="/javascripts/lib/angular-resource/angular-resource.js")
     
     script(type="text/javascript", src="/javascripts/DashboardCtrl.js")
-    script(type="text/javascript", src="/javascripts/Graph.js")  
+    script(type="text/javascript", src="/javascripts/Graph.js")
+
+    script(type="text/javascript", src="/javascripts/lib/smoothie.js")
 
   body
+    div
+      canvas(id="chart")
+
     div(class="dviz-content",style="max-width: 100%; max-height: 100%;",ng-controller="DashboardCtrl")
       
       pre
