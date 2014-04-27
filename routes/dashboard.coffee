@@ -1,2 +1,6 @@
+fs = require "fs"
+
 exports.show = (req, res) ->
-  res.render 'dashboard', {}
+  fs.readFile 'graphDeclaration', (err, output) ->
+    res.render 'dashboard',
+      graph: output.toString()
