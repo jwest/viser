@@ -37,10 +37,11 @@ class DashboardClient
     /**
      * @param string $source
      * @param string $target
+     * @param string $id
      *
      * @return void
      */
-    public function event($source, $target)
+    public function event($source, $target, $id = '')
     {
         $headers = [
             'Content-Type' => 'application/json'
@@ -49,6 +50,7 @@ class DashboardClient
         $body = new \stdClass();
         $body->source = $source;
         $body->target = $target;
+        $body->id = $id;
 
         try {
             $request = $this->client->post(

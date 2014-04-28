@@ -8,7 +8,6 @@ use Viser\Api\REST\DashboardClient;
 class DashboardClientTest extends \PHPUnit_Framework_TestCase
 {
     protected $headers;
-    protected $body;
     protected $response;
     protected $request;
     protected $client;
@@ -19,12 +18,6 @@ class DashboardClientTest extends \PHPUnit_Framework_TestCase
         $this->headers = [
             'Content-Type' => 'application/json'
         ];
-
-        $message = new \stdClass();
-        $message->source = 'source';
-        $message->target = 'target';
-
-        $this->body = \json_encode($message);
 
         $this->response = $this->getMock(
             '\Guzzle\Http\Message\Response',
@@ -53,12 +46,40 @@ class DashboardClientTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldTriggerEvent()
     {
+        $message = new \stdClass();
+        $message->source = 'source';
+        $message->target = 'target';
+        $message->id = 'client id';
+        $message = \json_encode($message);
+
         $this->request->expects($this->once())
             ->method('send');
 
         $this->client->expects($this->once())
             ->method('post')
-            ->with('/path/version/event', $this->headers, $this->body)
+            ->with('/path/version/event', $this->headers, $message)
+            ->will($this->returnValue($this->request));
+
+        $this->dashboard->event('source', 'target', 'client id');
+    }
+
+    /**
+     * @test
+     */
+    public function shouldTriggerEventWithEmptyId()
+    {
+        $message = new \stdClass();
+        $message->source = 'source';
+        $message->target = 'target';
+        $message->id = '';
+        $message = \json_encode($message);
+
+        $this->request->expects($this->once())
+            ->method('send');
+
+        $this->client->expects($this->once())
+            ->method('post')
+            ->with('/path/version/event', $this->headers, $message)
             ->will($this->returnValue($this->request));
 
         $this->dashboard->event('source', 'target');
@@ -70,6 +91,12 @@ class DashboardClientTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldThrowResponseExceptionOnError()
     {
+        $message = new \stdClass();
+        $message->source = 'source';
+        $message->target = 'target';
+        $message->id = 'client id';
+        $message = \json_encode($message);
+
         $this->response->expects($this->once())
             ->method('getStatusCode')
             ->will($this->returnValue(400));
@@ -86,10 +113,10 @@ class DashboardClientTest extends \PHPUnit_Framework_TestCase
 
         $this->client->expects($this->once())
             ->method('post')
-            ->with('/path/version/event', $this->headers, $this->body)
+            ->with('/path/version/event', $this->headers, $message)
             ->will($this->returnValue($this->request));
 
-        $this->dashboard->event('source', 'target');
+        $this->dashboard->event('source', 'target', 'client id');
     }
 
     /**
@@ -98,6 +125,12 @@ class DashboardClientTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldThrowUnknownExceptionOnUnrecognizedError()
     {
+        $message = new \stdClass();
+        $message->source = 'source';
+        $message->target = 'target';
+        $message->id = 'client id';
+        $message = \json_encode($message);
+
         $this->request->expects($this->once())
             ->method('send')
             ->will(
@@ -108,9 +141,9 @@ class DashboardClientTest extends \PHPUnit_Framework_TestCase
 
         $this->client->expects($this->once())
             ->method('post')
-            ->with('/path/version/event', $this->headers, $this->body)
+            ->with('/path/version/event', $this->headers, $message)
             ->will($this->returnValue($this->request));
 
-        $this->dashboard->event('source', 'target');
+        $this->dashboard->event('source', 'target', 'client id');
     }
 }

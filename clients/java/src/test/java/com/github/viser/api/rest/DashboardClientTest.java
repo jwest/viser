@@ -38,7 +38,20 @@ public class DashboardClientTest
     {
         when(target.request(MediaType.APPLICATION_JSON_TYPE))
                 .thenReturn(builder);
-        when(client.createEventRequestEntity(eq("source"), eq("target")))
+        when(client.createEventRequestEntity(eq("client id"), eq("source"), eq("target")))
+                .thenReturn(eventRequestEntity);
+
+        client.event("client id", "source", "target");
+
+        verify(builder).post(eventRequestEntity, EventResponse.class);
+    }
+
+    @Test
+    public void shouldTriggerDashboardEventWithEmptyId()
+    {
+        when(target.request(MediaType.APPLICATION_JSON_TYPE))
+                .thenReturn(builder);
+        when(client.createEventRequestEntity(eq(""), eq("source"), eq("target")))
                 .thenReturn(eventRequestEntity);
 
         client.event("source", "target");
@@ -51,12 +64,12 @@ public class DashboardClientTest
     {
         when(target.request(MediaType.APPLICATION_JSON_TYPE))
                 .thenReturn(builder);
-        when(client.createEventRequestEntity(eq("source"), eq("target")))
+        when(client.createEventRequestEntity(eq("client id"), eq("source"), eq("target")))
                 .thenReturn(eventRequestEntity);
         when(builder.post(eventRequestEntity, EventResponse.class))
                 .thenThrow(BadRequestException.class);
 
-        client.event("source", "target");
+        client.event("client id", "source", "target");
     }
 
     @Test(expected = UnknownErrorException.class)
@@ -64,11 +77,11 @@ public class DashboardClientTest
     {
         when(target.request(MediaType.APPLICATION_JSON_TYPE))
                 .thenReturn(builder);
-        when(client.createEventRequestEntity(eq("source"), eq("target")))
+        when(client.createEventRequestEntity(eq("client id"), eq("source"), eq("target")))
                 .thenReturn(eventRequestEntity);
         when(builder.post(eventRequestEntity, EventResponse.class))
                 .thenThrow(RuntimeException.class);
 
-        client.event("source", "target");
+        client.event("client id", "source", "target");
     }
 }
