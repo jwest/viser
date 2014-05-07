@@ -19,7 +19,7 @@ app.controller 'DashboardCtrl', ($scope, @Graph) ->
   data = new TimeSeries
   createTimeLine()
 
-  $scope.socket = window.io.connect 'http://localhost:3000'
+  $scope.socket = window.io.connect window.location.origin
   $scope.socket.on 'flow', (source, target) =>
     now = new Date().getTime()
     data.append now - 1, 0
