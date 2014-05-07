@@ -13,9 +13,11 @@ repository = require './storage/repository'
 
 repository = require './storage/repository'
 
+port = process.env.PORT || 3000
+
 app = express()
 
-app.set 'port', 80
+app.set 'port', port
 app.set 'views', path.join __dirname, 'views'
 app.set 'view engine', 'jade'
 app.use coffeeMiddleware
@@ -49,4 +51,4 @@ io.sockets.on 'connection', (socket) ->
     repository.save source, target, id, () ->
   	  socket.emit "flow", source, target
 
-server.listen 80
+server.listen port
