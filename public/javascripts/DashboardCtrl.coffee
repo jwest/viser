@@ -2,6 +2,8 @@ window.app = angular.module 'viser', ['ngResource']
  
 app.controller 'DashboardCtrl', ($scope, @Graph) ->
 
+  $('.dviz-content svg').height $(window).height()
+
   $scope.text = 'Hello World!'
 
   createTimeLine = ->
